@@ -9,10 +9,9 @@
 </head>
 <body>
 
-    <video controls autoplay loop muted>
+    <video controls autoplay loop>
         <source src="source/om_martin_kankung.mp4" type="video/mp4">
     </video>
-
 
     <!-- Top Header -->
     <div class="container"> 
@@ -55,6 +54,15 @@
             </div> 
         </footer>
     </div>
+
+    <audio id="music" controls autoplay loop>
+        <source src="source/Gaiety in the Golden Age.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        var audio = document.getElementById("music");
+        audio.volume = 0.35;
+    </script>
 
 </body>
 </html>
