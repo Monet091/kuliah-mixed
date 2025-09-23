@@ -1,0 +1,96 @@
+/* Mengatur gaya dasar untuk seluruh halaman */
+body {
+    background-color: rgb(151, 101, 220); /* Warna background biru */
+    font-family: Arial, sans-serif; /* Font default untuk teks menu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+hr {
+    height: 10px;
+    background-color:rgb(0, 0, 0);
+}
+
+/* Kotak putih di tengah */
+.container {
+    background-color: white;
+    width: 80%;
+    max-width: 700px;
+    padding: 25px;
+    border: 2px solid black;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Judul utama */
+header h1 {
+    font-family: 'Curlz MT', cursive; /* Jenis tulisan Curlz MT */
+    text-align: center;
+    font-size: 2.5em; /* Ukuran disesuaikan */
+    color: #333;
+}
+
+/* Gaya untuk promo "Gratis choco blast" */
+.promo {
+    font-family: 'Curlz MT', cursive;
+    background-color:white;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    /* Animasi untuk tulisan berjalan */
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.promo p {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+}
+
+/* Definisi animasi marquee */
+@keyframes marquee {
+    50%   { transform: translate(50%, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+
+/* Gaya untuk bagian menu */
+.menu {
+    padding-left: 20px;
+}
+
+.menu ul {
+    list-style-type: disc; /* Memberi titik pada list */
+    padding-left: 40px;
+}
+
+/* Gaya untuk teks penutup */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: black;
+}
+
+/* ini udh gk kepake bang */
+.penutup {
+    font-family: 'Curlz MT', cursive;
+    font-size: medium;
+    font-weight: bold;
+    text-align: center;
+
+
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box; 
+}
+
+.penutup p {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 10s linear infinite;
+}
+/* sampek sini */
