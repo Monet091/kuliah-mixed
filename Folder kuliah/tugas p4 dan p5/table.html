@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>Jenis Kelamin</th>
+            <th>Agama</th>
+            <th>Asal Sekolah</th>
+        </tr>
+        <tr>
+            <td>Rizky</td>
+            <td>Jl. Mawar</td>
+            <td>Laki-laki</td>
+            <td>Islam</td>
+            <td>SMA 1</td>
+        </tr>
+        <tr>
+            <td>Alya</td>
+            <td>Jl. Melati</td>
+            <td>Perempuan</td>
+            <td>Kristen</td>
+            <td>SMA 2</td>
+        </tr>
+        <tr>
+            <td>Budi</td>
+            <td>Jl. Kenanga</td>
+            <td>Laki-laki</td>
+            <td>Hindu</td>
+            <td>SMA 3</td>
+        </tr>
+    </table>
+<hr>
+    <p>Formulir registrasi:</p>
+
+    <form>
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama"><br>
+
+        <label for="Kelamin">Jenis Kelamin:</label>
+        <input type="radio" id="Laki-laki" name="Kelamin" value="Laki-laki">
+        <label for="Laki-laki">Laki-laki</label>
+        <input type="radio" id="Perempuan" name="Kelamin" value="Perempuan">
+        <label for="Perempuan">Perempuan</label><br>
+
+        <label for="ttg">Tempat Tanggal lahir:</label>
+        <input type="text" id="ttg" name="ttg"><br>
+        <label for="npm">Npm:</label>
+        <input type="text" id="npm" name="npm"><br>
+
+        <label for="fakultas">Fakultas:</label><br>
+        <input type="radio" id="FTMIPA" name="Fakultas" value="FTMIPA">
+        <label for="Ilmu Komputer">FTMIPA</label><br>
+        <input type="radio" id="FIPPS" name="Fakultas" value="FIPPS">
+        <label for="Ilmu Komputer">FIPPS</label><br>
+        <input type="radio" id="FBS" name="fakultas" value="FBS">
+        <label for="Ilmu Komputer">FBS</label><br>
+        <input type="radio" id="FASCA SARJANA" name="fakultas" value="PASCA SARJANA">
+        <label for="Ilmu Komputer">PASCA SARJANA</label><br>
+
+
+        <tr>
+            <td>Program studi</td>
+            <td>
+                    <select name="prodi">
+                        <option value="Ilmu Komputer">Ilmu Komputer</option>
+                        <option value="Sistem Informasi">Sistem Informasi</option>
+                        <option value="Teknologi Informasi">Teknologi Informasi</option>
+                        <option value="Matematika">Matematika</option>
+                        <option value="Fisika">Fisika</option>
+                        <option value="Kimia">Kimia</option>
+                        <option value="Biologi">Biologi</option>
+                        <option value="Statistika">Statistika</option>
+                        <option value="Teknik Sipil">Teknik Sipil</option>
+                        <option value="Teknik Arsitektur">Teknik Arsitektur</option>
+                        <option value="Teknik Lingkungan">Teknik Lingkungan</option>
+                        <option value="Teknik Geofisika">Teknik Geofisika</option>
+                        <option value="Pendidikan Bahasa dan Sastra Indonesia">Pendidikan Bahasa dan Sastra Indonesia</option>
+                        <option value="Pendidikan Bahasa Inggris">Pendidikan Bahasa Inggris</option>
+                        <option value="Pendidikan Bahasa Jepang">Pendidikan Bahasa Jepang</option>
+                        <option value="Pendidikan Bahasa Jerman">Pendidikan
+                    </select>
+            </td>
+        </tr> <br>
+
+        <label for="buku">kategori buku:</label><br>
+        <input type="checkbox" name="Pendidikan" id="Pendidikan">
+        <label for="Pendidikan">Pendidikan</label><br>
+        <input type="checkbox" name="Pendidikan" id="ilmu sosial">
+        <label for="Pendidikan">Ilmu sosial</label><br>
+        <input type="checkbox" name="Pendidikan" id="ilmu alam">
+        <label for="Pendidikan">Ilmu Alam</label><br>
+        <input type="checkbox" name="Pendidikan" id="agama">
+        <label for="Pendidikan">Agama</label><br>
+        <input type="checkbox" name="Pendidikan" id="budaya">
+        <label for="Pendidikan">Budaya</label><br>
+        <input type="checkbox" name="Pendidikan" id="Matematika">
+        <label for="Pendidikan">Matematika & Sains</label><br>
+
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </td>
+        </tr>
+    </form>
+
+    <a href="dontol.html">dontol</a>
+</body>
+</html> 
+
+
