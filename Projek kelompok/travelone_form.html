@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travelone - Formulir Pemesanan</title>
+</head>
+<body>
+    <h1>Formulir Pemesanan Travel</h1>
+    
+    <nav>
+        <a href="travelone_index.html">Beranda</a> |
+        <a href="travelone_about.html">Tentang Kami</a> |
+        <a href="travelone_package.html">Paket Travel</a> |
+        <a href="travelone_form.html">Formulir Pemesanan</a> |
+        <a href="travelone_gallery.html">Galeri</a> |
+        <a href="travelone_contact.html">Kontak</a>
+    </nav>
+    
+    <hr>
+    
+    <h2>Form Pemesanan Paket Wisata</h2>
+    
+    <form>
+        <h3>Data Pribadi</h3>
+        
+        <label>Nama Lengkap:</label><br>
+        <input type="text" name="nama"><br><br>
+        
+        <label>Email:</label><br>
+        <input type="email" name="email"><br><br>
+        
+        <label>No. Telepon:</label><br>
+        <input type="tel" name="telepon"><br><br>
+        
+        <label>Alamat:</label><br>
+        <textarea name="alamat" rows="3"></textarea><br><br>
+        
+        <h3>Detail Pemesanan</h3>
+        
+        <label>Pilih Paket:</label><br>
+        <select name="paket">
+            <option>-- Pilih Paket --</option>
+            <option>Paket Bali Paradise</option>
+            <option>Paket Jogja Heritage</option>
+            <option>Paket Lombok Eksotis</option>
+            <option>Paket Bandung Cool</option>
+            <option>Paket Raja Ampat</option>
+            <option>Paket Bromo Sunrise</option>
+        </select><br><br>
+        
+        <label>Tanggal Keberangkatan:</label><br>
+        <input type="date" name="tanggal"><br><br>
+        
+        <label>Jumlah Peserta:</label><br>
+        <input type="number" name="jumlah" min="1"><br><br>
+        
+        <label>Permintaan Khusus:</label><br>
+        <textarea name="permintaan" rows="4"></textarea><br><br>
+        
+        <h3>Metode Pembayaran</h3>
+        
+        <input type="radio" name="pembayaran" value="transfer"> Transfer Bank<br>
+        <input type="radio" name="pembayaran" value="ewallet"> E-Wallet<br>
+        <input type="radio" name="pembayaran" value="cash"> Tunai<br><br>
+        
+        <input type="checkbox" name="setuju"> Saya setuju dengan syarat dan ketentuan<br><br>
+        
+        <input type="submit" value="Kirim Pemesanan">
+        <input type="reset" value="Reset">
+    </form>
+    
+    <hr>
+    <footer>
+        <p>Copyright 2025 Travelone. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
