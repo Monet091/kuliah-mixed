@@ -1,6 +1,9 @@
 # kuliah-mixed
 Repository untuk tugas kuliah yang menggunakan Visual Studio Code.
 
+## Live Demo
+Kunjungi [GitHub Pages](https://monet091.github.io/kuliah-mixed/) untuk melihat demo project.
+
 ## Struktur Folder
 
 ### Folder Kuliah
@@ -32,5 +35,7 @@ Repository untuk tugas kuliah yang menggunakan Visual Studio Code.
 - travelone_index.html
 - travelone_package.html
 
-## Demo
-Berikut adalah [demo situs web](web/travelone_index.html) yang bisa Anda lihat.
+## Penggunaan
+1. Clone repository ini
+2. Buka folder yang diinginkan
+3. Buka file HTML menggunakan web browser
