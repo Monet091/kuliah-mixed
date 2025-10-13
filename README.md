@@ -33,4 +33,4 @@ Repository untuk tugas kuliah yang menggunakan Visual Studio Code.
 - travelone_package.html
 
 ## Demo
-Berikut adalah [demo situs web](web/) yang bisa Anda lihat.
+Berikut adalah [demo situs web](web/travelone_index.html) yang bisa Anda lihat.
