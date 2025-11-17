@@ -137,3 +137,38 @@ if (age >= 18) {
         console.log("You are too young and do not have a guardian. Go home.");
     }
 }
+
+/* Day 3 Array And loop
+Task 8 The Shopping list */
+console.log("____ Day 3 task 1 _____");
+
+const shoppingList = ["Apples", "Milk", "Bread", "Eggs", "Cheese"];
+console.log(shoppingList);
+console.log(shoppingList[0]);
+console.log(shoppingList[2]);
+console.log("The Item on the list is " + shoppingList.length);
+
+
+// Task 9 Looping
+console.log("____ Day 3 task 2 _____");
+
+for (let i = 10; i > 0; i--) {
+console.log(i);
+}
+console.log("Liftoff!")
+
+// Task 10 Looping through array
+console.log("____ Day 3 task 3 _____");
+for (let i = 0; i < shoppingList.length; i++) {
+    console.log("Item " + (i + 1) + ": " + shoppingList[i]);
+}
+
+// Task 11 The Number Cruncher
+console.log("____ Day 3 task 4 _____");
+let prices =[25, 10 , 50, 5.5, 30];
+let total1 = 0;
+
+for (let i = 0; i < prices.length; i++){
+total1 += prices[i];
+}
+console.log(total1);
