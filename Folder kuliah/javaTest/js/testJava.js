@@ -172,3 +172,57 @@ for (let i = 0; i < prices.length; i++){
 total1 += prices[i];
 }
 console.log(total1);
+
+// task 12 Functions
+console.log("____ Day 4 task 1 _____");
+function greetUser(name){
+    console.log(`Welcome, ${name}!`);   
+}
+greetUser("Alice");
+greetUser("Bob");
+greetUser("Monet");
+
+// Task 13 retun value
+console.log("____ Day 4 task 2 _____");
+function add(num1, num2){
+    return num1 + num2;
+}
+
+let sum = add(5, 10);
+console.log(sum)
+console.log(add(100, -50));
+
+// Task 14 Combining logic and functions
+console.log("____ Day 4 task 3 _____");
+function getGrade(score){
+    if (score >= 90) {
+        return "A";
+    } else if (score >= 80) {
+        return "B";
+    } else if (score >= 70) {
+        return "C";
+    } else if (score >= 60) {
+        return "D";
+    } else {
+        return "F";
+    }
+}
+
+console.log(getGrade(95));
+console.log(getGrade(72));
+console.log(getGrade(40));
+
+// Task 15 Array and Functions
+console.log("____ Day 4 task 4 _____");
+function calculateTotal(pricesArray){
+    let total = 0;
+    for (let i = 0; i < pricesArray.length; i++) {
+        total += pricesArray[i];
+    }
+    return total;
+}
+
+let prices1 = [15, 25, 35];
+let prices2 = [100, 200, 300, 400];
+console.log(calculateTotal(prices1));
+console.log(calculateTotal(prices2));
