@@ -1,0 +1,35 @@
+body{
+    margin: 0px;
+}
+
+.imageProfile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imageProfile img {
+    border-radius: 50%;
+    width: 300px;
+    height: 300x;
+}
+.bioData {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 60px;
+}
+
+.line {
+    background-color: rgb(39, 39, 39);
+    padding: 50px 30px 100px 30px;
+    color: white;
+    
+}
+
+.line p {
+    font-size: 20px;
+    margin: 10px 0px 10px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
