@@ -226,3 +226,58 @@ let prices1 = [15, 25, 35];
 let prices2 = [100, 200, 300, 400];
 console.log(calculateTotal(prices1));
 console.log(calculateTotal(prices2));
+
+
+// Task 16 Object Basics
+console.log("____ Day 5 task 1 _____");
+const inventory = {
+    name: "Steel Hammer",
+    price: 25.50,
+    inStock: true,
+};
+
+console.log(inventory.name);
+console.log(inventory['price']);
+
+inventory.inStock = false;
+inventory.serialNumber = "9001";
+console.log(inventory);
+
+// Task 17 Object and Functions
+console.log("____ Day 5 task 2 _____");
+let globalMessage = "Welcome To the Site: ";
+function changeMessage() {
+    let globalMessage = "Access Denied";
+    console.log(globalMessage);
+}
+
+changeMessage();
+console.log(globalMessage);
+
+/* why the final log does not show "Access Denied" Because
+Inside Te function let globalMessage creates a new local variable that only exists within the function scope.
+The global variable globalMessage remains unchanged outside the function. So the correct code is remove let and write it only globalMessage = "Access Denied";*/
+
+// Task 18 introduction to reduce
+console.log("____ Day 5 task 3 _____");
+
+let price = [10, 20, 30, 40, 50];
+let totalPrice = price.reduce((sum, price1) => sum + price1, 0);
+console.log(totalPrice);
+
+// Task 19 Object Array
+console.log("____ Day 5 task 4 _____");
+const products = [
+    {name: "Laptop", weight: 1.5},
+    {name: "Smartphone", weight: 0.2},
+    {name: "Tablet", weight: 0.5},
+]
+
+let totalWeight = 0;
+
+for (let i = 0; i < products.length; i++) {
+    console.log(products[i].name);
+    totalWeight += products[i].weight;
+}
+
+console.log("Total Weight: " + totalWeight);
