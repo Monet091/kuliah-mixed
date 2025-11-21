@@ -282,3 +282,53 @@ for (let i = 0; i < products.length; i++) {
 
 console.log("Total Weight: " + totalWeight);
 
+// Task 20 immutability practice (The Spread Operator)
+console.log("____ Day 6 task 1 _____");
+let originalNumbers = [1, 2, 3];
+let newNumbers = [... originalNumbers, 4];
+
+console.log(newNumbers);
+
+const updatedInventory = {
+    ...inventory,
+    location: "warehouse A",
+}
+
+console.log(updatedInventory);
+console.log(originalNumbers);
+
+// Task 21 Default Parameters
+console.log("____ Day 6 task 2 _____");
+function getGreeting(name, language = "English") {
+    if (language === "English") {
+        console.log(`Hello, ${name}! (language: English)`);
+    } else if (language === "Mandarin") {
+        console.log(`Ni hao, ${name}! (language: Mandarin)`);
+    } else {
+        console.log(`Hola, ${name}! (language: ${language})`);
+    }
+}
+
+getGreeting("sarah");
+getGreeting("Chen", "Mandarin");
+getGreeting("Carlos", "Spanish");
+
+// Task 22 The this Challenge
+console.log("____ Day 6 task 3 _____");
+let account = {
+    owner: "Alex", balance: 5000,
+    checkBalance: function() {
+        // console.log("The balance for " + this.owner + " is " + this.balance);
+        return "The balance for " + this.owner + " is " + this.balance;
+    }
+};
+
+console.log(account.checkBalance());
+// account.checkBalance();
+console.log(account.owner);
+
+// Task 23 Arrow Functions
+console.log("____ Day 6 task 4 _____");
+const calculateTotal1 = (pricesArray) => pricesArray.reduce((sum, price) => sum + price, 0);
+let prices3 = [5, 15, 25];
+console.log(calculateTotal1(prices3));
