@@ -1,0 +1,109 @@
+/* RESET DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* NAVBAR */
+nav {
+    background: #007bff;
+    color: white;
+    padding: 15px 5%;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.konten-hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+.btn-cta {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #28a745; /* Warna Hijau */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* EDUKASI SECTION */
+.edukasi {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 5%;
+    flex-wrap: wrap;
+}
+
+.kartu-info {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* KALKULATOR SECTION */
+.area-kalkulator {
+    padding: 50px 20px;
+    background: #e9ecef;
+    display: flex;
+    justify-content: center;
+}
+
+.kotak-hitung {
+    background: white;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover { background: #0056b3; }
+
+/* HASIL OUTPUT */
+.hasil-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.saran { font-style: italic; font-size: 0.9rem; margin-top: 5px; }

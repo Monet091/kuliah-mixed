@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Kesehatan & Edukasi Obesitas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <h2>HealthCheck.</h2>
+    </nav>
+
+    <header class="hero">
+        <div class="konten-hero">
+            <h1>Lawan Obesitas, Mulai Hari Ini.</h1>
+            <p>Obesitas bukan sekadar kelebihan berat badan, tapi pintu masuk berbagai penyakit kronis. Ketahui status tubuhmu sekarang.</p>
+            <a href="#kalkulator" class="btn-cta">Cek Berat Badan Sekarang</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="edukasi">
+            <div class="kartu-info">
+                <h3>Apa itu Obesitas?</h3>
+                <p>Penumpukan lemak berlebih akibat ketidakseimbangan asupan energi (makan) dengan energi yang digunakan (aktivitas).</p>
+            </div>
+            <div class="kartu-info">
+                <h3>Resikonya?</h3>
+                <p>Diabetes Tipe 2, Penyakit Jantung, Hipertensi, dan masalah pernapasan. Pencegahan dini adalah kunci.</p>
+            </div>
+        </section>
+
+        <section id="kalkulator" class="area-kalkulator">
+            <div class="kotak-hitung">
+                <h2>Cek Berat Badan Ideal</h2>
+                <p>Masukkan data Anda di bawah ini:</p>
+
+                <div class="form-group">
+                    <label>Berat Badan (kg)</label>
+                    <input type="number" id="berat" placeholder="Contoh: 60">
+                </div>
+
+                <div class="form-group">
+                    <label>Tinggi Badan (cm)</label>
+                    <input type="number" id="tinggi" placeholder="Contoh: 170">
+                </div>
+
+                <button onclick="hitungBMI()">Hitung Sekarang</button>
+
+                <div id="hasil-output" class="hasil-box" style="display: none;">
+                    <h3>BMI Anda: <span id="nilai-bmi">0</span></h3>
+                    <p>Status: <b id="status-bmi">-</b></p>
+                    <p id="saran-bmi" class="saran">-</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Ini Uas</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
