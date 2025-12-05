@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelone - Jelajahi Dunia</title>
+    <!-- Mengambil Icon dari CDN agar terlihat bagus -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- 1. CSS VARIABLES & RESET (PENGATURAN DASAR) --- */
+        :root {
+            --primary-blue: #0f3460;   /* Biru Gelap (Logo) */
+            --accent-blue: #00a8cc;    /* Biru Langit (Aksen) */
+            --light-gray: #f2f2f2;     /* Background */
+            --white: #ffffff;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- 2. NAVIGATION BAR --- */
+        nav {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-blue);
+        }
+
+        .btn-logout {
+            background-color: #e94560;
+            padding: 5px 15px;
+            border-radius: 5px;
+            color: white !important;
+        }
+
+        /* HAMBURGER MENU (MOBILE) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- 3. LOGIN OVERLAY --- */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.95), rgba(0, 168, 204, 0.6)), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: white;
+            padding: 3.5rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .login-box:hover {
+            transform: scale(1.02);
+        }
+
+        .login-box h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .login-box p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .login-icon {
+            font-size: 60px !important;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 16px;
+            margin: 12px 0;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: border 0.3s;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* --- 4. SECTIONS & LAYOUT --- */
+        section {
+            display: none;
+            padding: 2rem 5%;
+            min-height: 80vh;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        section.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.4);
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- NEW: ZIGZAG TIMELINE STYLE (MODERN) --- */
+        .zigzag-wrapper {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Garis Vertikal Tengah */
+        .zigzag-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #e0e0e0;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .zigzag-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .zigzag-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Titik Tengah (Dot) */
+        .zigzag-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent-blue);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(0, 168, 204, 0.2);
+            z-index: 2;
+        }
+
+        .zigzag-content, .zigzag-image {
+            width: 45%; /* Sisi kiri dan kanan */
+        }
+
+        /* Gambar dengan style modern */
+        .zigzag-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .zigzag-image img:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Teks */
+        .zigzag-content {
+            padding: 20px;
+        }
+
+        .zigzag-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .zigzag-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Membalik urutan untuk baris genap */
+        .zigzag-item.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .zigzag-item.reverse .zigzag-content {
+            text-align: right;
+        }
+
+        /* --- OLD GRID & CARDS (Still used for Gallery/Packages) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* MASONRY GALLERY */
+        .masonry-gallery {
+            column-count: 3;
+            column-gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .masonry-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .masonry-caption {
+            padding: 1rem;
+            background: white;
+            text-align: center;
+        }
+
+        .masonry-caption h4 {
+            margin: 0;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        /* CARDS */
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-content h3 {
+            margin: 1rem 0 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .card-price {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* CALCULATOR & FORM */
+        .booking-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .price-display {
+            background-color: #e3f2fd;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .price-display h3 { color: var(--primary-blue); margin-bottom: 5px; }
+        .total-price { font-size: 2rem; color: var(--primary-blue); font-weight: bold; }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin: 3rem 0 4rem;
+            font-weight: 800;
+        }
+
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* RESPONSIVE UPGRADE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-blue);
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 { font-size: 2rem; }
+            .login-box { padding: 2rem; width: 95%; }
+            
+            .masonry-gallery {
+                column-count: 2;
+            }
+
+            /* Zigzag Responsive: Stack vertikal di HP */
+            .zigzag-wrapper::before {
+                left: 20px; /* Garis pindah ke kiri */
+            }
+            
+            .zigzag-item, .zigzag-item.reverse {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 50px; /* Beri ruang untuk garis */
+                margin-bottom: 50px;
+            }
+
+            .zigzag-content, .zigzag-image {
+                width: 100%;
+                text-align: left !important;
+            }
+
+            .zigzag-image {
+                margin-bottom: 20px;
+            }
+
+            .zigzag-dot {
+                left: 20px; /* Titik pindah ke garis kiri */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .masonry-gallery {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. LOGIN GATE -->
+    <div id="login-overlay">
+        <div class="login-box">
+            <i class="fas fa-plane-departure login-icon"></i>
+            <h2>Selamat Datang</h2>
+            <p>Portal Eksklusif Travelone</p>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" class="login-input" placeholder="Nama Pengguna" required>
+                <input type="password" class="login-input" placeholder="Kata Sandi" required>
+                <button type="submit" class="btn-primary">MASUK SEKARANG</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. NAVIGATION BAR -->
+    <nav id="main-nav" style="display:none;">
+        <div class="logo">
+            <img src="source/travelone-logo-2.png" alt="Travelone Logo" onerror="this.src='https://via.placeholder.com/50x50?text=Logo'">
+        </div>
+        
+        <!-- Hamburger Icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="nav-links" id="nav-links">
+            <a onclick="showPage('home')" class="active">Beranda</a>
+            <a onclick="showPage('packages')">Paket</a>
+            <a onclick="showPage('about')">Tentang</a>
+            <a onclick="showPage('gallery')">Galeri</a>
+            <a onclick="showPage('contact')">Kontak</a>
+            <a onclick="showPage('booking')" style="color: var(--accent-blue);">Pesan Sekarang</a>
+            <a onclick="handleLogout()" class="btn-logout">Keluar</a>
+        </div>
+    </nav>
+
+    <!-- 3. HALAMAN: HOME -->
+    <section id="home">
+        <div class="hero">
+            <video autoplay muted loop playsinline>
+                <source src="https://www.pexels.com/download/video/2252797/" type="video/mp4">
+            </video>
+            <div style="z-index: 2;">
+                <h1>Jelajahi Dunia Bersama Kami</h1>
+                <p>Harga terjangkau, pengalaman tak terlupakan, dan layanan profesional.</p>
+                <button onclick="showPage('packages')" class="btn-primary" style="background: var(--accent-blue); width: auto; padding: 15px 40px;">Lihat Destinasi</button>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem; padding: 0 5%;">
+            <h2 class="section-title">Mengapa Travelone?</h2>
+            
+            <!-- ZIGZAG LAYOUT UNTUK "MENGAPA KAMI" -->
+            <div class="zigzag-wrapper">
+                
+                <!-- Item 1: Image Left, Text Right -->
+                <div class="zigzag-item">
+                    <div class="zigzag-dot"></div>
+                    <div class="zigzag-image">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500" alt="Harga Terjangkau">
+                    </div>
+                    <div class="zigzag-content">
+                        <h3>Harga Terjangkau</h3>
+                        <p>Kami memahami bahwa anggaran adalah hal penting. Travelone menawarkan paket wisata berkualitas premium dengan harga yang sangat kompetitif dan transparan tanpa biaya tersembunyi.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Text Left, Image Right (Reverse) -->
+                <div class="zigzag-item reverse">
+                    <div class="zigzag-dot"></div>
+                    <div class="zigzag-image">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500" alt="Pelayanan Profesional">
+                    </div>
+                    <div class="zigzag-content">
+                        <h3>Pelayanan Profesional</h3>
+                        <p>Didukung oleh tim yang berpengalaman lebih dari 10 tahun di industri pariwisata. Guide kami berlisensi resmi dan siap melayani kebutuhan Anda 24/7 dengan ramah dan sigap.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Image Left, Text Right -->
+                <div class="zigzag-item">
+                    <div class="zigzag-dot"></div>
+                    <div class="zigzag-image">
+                        <img src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=500" alt="Destinasi Beragam">
+                    </div>
+                    <div class="zigzag-content">
+                        <h3>Destinasi Eksotis</h3>
+                        <p>Dari pantai tersembunyi di Bali hingga puncak gunung Bromo. Kami memiliki akses eksklusif ke berbagai destinasi impian yang mungkin belum pernah Anda bayangkan sebelumnya.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4: Text Left, Image Right (Reverse) -->
+                <div class="zigzag-item reverse">
+                    <div class="zigzag-dot"></div>
+                    <div class="zigzag-image">
+                        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=500" alt="Paket Lengkap">
+                    </div>
+                    <div class="zigzag-content">
+                        <h3>Paket All-In-One</h3>
+                        <p>Duduk manis dan nikmati liburan. Tiket pesawat, hotel berbintang, transportasi, hingga tiket masuk wisata sudah kami urus. Liburan bebas ribet dimulai dari sini.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. HALAMAN: PAKET -->
+    <section id="packages">
+        <h2 class="section-title">Paket Wisata Terpopuler</h2>
+        <div class="grid-container" id="package-list">
+            <!-- Diisi otomatis oleh Javascript -->
+        </div>
+    </section>
+
+    <!-- 5. HALAMAN: BOOKING -->
+    <section id="booking">
+        <h2 class="section-title">Formulir Pemesanan</h2>
+        <div class="booking-container">
+            <form onsubmit="alert('Pemesanan Terkirim! Kami akan menghubungi Anda.'); return false;">
+                <div class="form-group">
+                    <label>Pilih Paket Wisata</label>
+                    <select id="input-paket" onchange="calculatePrice()" required>
+                        <option value="0">-- Pilih Destinasi --</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Maskapai Penerbangan</label>
+                    <select id="input-airline" onchange="calculatePrice()">
+                        <option value="1.0">Lion Air (Standard)</option>
+                        <option value="1.1">Citilink (Medium)</option>
+                        <option value="1.2">Batik Air (Premium)</option>
+                        <option value="1.5">Garuda Indonesia (Luxury)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Jumlah Peserta (Pax)</label>
+                    <input type="number" id="input-pax" value="1" min="1" oninput="calculatePrice()" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tanggal Keberangkatan</label>
+                    <input type="date" required>
+                </div>
+
+                <div class="price-display">
+                    <h3>Estimasi Total Biaya:</h3>
+                    <div class="total-price" id="display-price">Rp 0</div>
+                    <small>*Harga sudah termasuk pajak & guide</small>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Konfirmasi Pemesanan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 6. HALAMAN: ABOUT (ZIGZAG STYLE APPLIED) -->
+    <section id="about">
+        <div style="padding: 0 5%;">
+            <h2 class="section-title">Tentang Travelone</h2>
+            
+            <div class="zigzag-wrapper">
+                <!-- Intro -->
+                <div class="zigzag-item">
+                    <div class="zigzag-dot"></div>
+                    <div class="zigzag-image">
+                        <img src="source/travelone-logo-3.jpg" alt="Tentang Kami" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800'">
+                    </div>
+                    <div class="zigzag-content">
+                        <h3>Siapa Kami?</h3>
+                        <p>Travelone didirikan pada tahun 2025 dengan satu tujuan: memberikan pengalaman perjalanan tak terlupakan. Kami bukan sekadar agen travel, kami adalah kurator memori indah Anda.</p>
+                    </div>
+                </div>
+
+                <!-- Visi -->
+                <div class="zigzag-item reverse">
+                    <div class="zigzag-dot"></div>
+                    <div class="zigzag-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500" alt="Visi Kami">
+                    </div>
+                    <div class="zigzag-content">
+                        <h3>Visi Kami</h3>
+                        <p>Menjadi perusahaan travel terpercaya dan terdepan di Asia Tenggara. Kami bermimpi menghubungkan setiap orang dengan keindahan alam Indonesia dan dunia dengan cara yang mudah dan menyenangkan.</p>
+                    </div>
+                </div>
+
+                <!-- Misi -->
+                <div class="zigzag-item">
+                    <div class="zigzag-dot"></div>
+                    <div class="zigzag-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500" alt="Misi Kami">
+                    </div>
+                    <div class="zigzag-content">
+                        <h3>Misi Kami</h3>
+                        <p>Kami berkomitmen untuk memberikan pelayanan bintang lima dengan harga kaki lima. Inovasi teknologi, keamanan, dan kepuasan pelanggan adalah pilar utama operasional kami.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. HALAMAN: GALLERY -->
+    <section id="gallery">
+        <h2 class="section-title">Galeri Perjalanan</h2>
+        <div class="masonry-gallery">
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800" alt="Bali">
+                <div class="masonry-caption"><h4>Bali Paradise</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&q=80&w=800" alt="Jogja">
+                <div class="masonry-caption"><h4>Yogyakarta Heritage</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1600790314350-3925299bab61?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lombok">
+                <div class="masonry-caption"><h4>Lombok Eksotis</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Raja Ampat">
+                <div class="masonry-caption"><h4>Raja Ampat</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&q=80&w=800" alt="Bromo">
+                <div class="masonry-caption"><h4>Bromo Sunrise</h4></div>
+            </div>
+            <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&q=80&w=800" alt="Ubud">
+                <div class="masonry-caption"><h4>Ubud Cultural</h4></div>
+            </div>
+             <div class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800" alt="Danau Toba">
+                <div class="masonry-caption"><h4>Danau Toba</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. HALAMAN: KONTAK -->
+    <section id="contact">
+        <div class="booking-container" style="text-align: center;">
+            <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--primary-blue);"></i>
+            <h2 style="margin: 20px 0;">Hubungi Kami</h2>
+            <p><strong>Kantor Pusat:</strong> Jl. Sudirman No. 123, Jakarta Pusat</p>
+            <p><strong>WhatsApp:</strong> +62 812 3456 7890</p>
+            <p><strong>Email:</strong> info@travelone.com</p>
+            
+            <div style="margin-top: 30px;">
+                <button class="btn-primary" onclick="window.open('https://wa.me/6281234567890', '_blank')"><i class="fab fa-whatsapp"></i> Chat WhatsApp (Live)</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Travelone. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const packages = [
+            { id: 1, name: 'Bali Paradise', price: 3500000, img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800', desc: '4 Hari 3 Malam - Hotel & Transport' },
+            { id: 2, name: 'Jogja Heritage', price: 2200000, img: 'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&q=80&w=800', desc: '3 Hari 2 Malam - Tiket Wisata' },
+            { id: 3, name: 'Lombok Eksotis', price: 4800000, img: 'https://images.unsplash.com/photo-1600790314350-3925299bab61?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '5 Hari 4 Malam - Snorkeling' },
+            { id: 4, name: 'Bandung Cool', price: 1500000, img: 'https://images.unsplash.com/photo-1611638281871-1063d3e76e1f?q=80&w=1133&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '2 Hari 1 Malam - Kuliner' },
+            { id: 5, name: 'Raja Ampat', price: 8500000, img: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '6 Hari 5 Malam - Diving' },
+            { id: 6, name: 'Bromo Sunrise', price: 1800000, img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&q=80&w=800', desc: '2 Hari 1 Malam - Jeep' },
+        ];
+
+        window.onload = function() {
+            const packageContainer = document.getElementById('package-list');
+            const selectOptions = document.getElementById('input-paket');
+            
+            packages.forEach(pkg => {
+                packageContainer.innerHTML += `
+                    <div class="card">
+                        <img src="${pkg.img}" alt="${pkg.name}">
+                        <div class="card-content">
+                            <h3>${pkg.name}</h3>
+                            <p>${pkg.desc}</p>
+                            <div class="card-price">Rp ${pkg.price.toLocaleString('id-ID')}</div>
+                            <button onclick="goToBooking(${pkg.id})" class="btn-primary" style="margin-top:10px; width:100%;">Pesan</button>
+                        </div>
+                    </div>
+                `;
+                selectOptions.innerHTML += `<option value="${pkg.price}">${pkg.name}</option>`;
+            });
+
+            if(localStorage.getItem('isLoggedIn') === 'true') {
+                document.getElementById('login-overlay').style.display = 'none';
+                document.getElementById('main-nav').style.display = 'flex';
+                showPage('home');
+            }
+        };
+
+        function handleLogin(e) {
+            e.preventDefault();
+            document.getElementById('login-overlay').style.display = 'none';
+            document.getElementById('main-nav').style.display = 'flex';
+            showPage('home');
+            localStorage.setItem('isLoggedIn', 'true');
+        }
+
+        function handleLogout() {
+            document.getElementById('login-overlay').style.display = 'flex';
+            document.getElementById('main-nav').style.display = 'none';
+            localStorage.removeItem('isLoggedIn');
+            location.reload();
+        }
+
+        function toggleMenu() {
+            const nav = document.getElementById('nav-links');
+            nav.classList.toggle('active');
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active-page'));
+            document.getElementById(pageId).classList.add('active-page');
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            
+            // Tutup menu mobile setelah klik (UX yang bagus)
+            document.getElementById('nav-links').classList.remove('active');
+            
+            window.scrollTo(0,0);
+        }
+
+        function goToBooking(pkgId) {
+            showPage('booking');
+            alert("Silakan pilih paket yang Anda inginkan di formulir.");
+        }
+
+        function calculatePrice() {
+            const basePrice = parseFloat(document.getElementById('input-paket').value);
+            const airlineMultiplier = parseFloat(document.getElementById('input-airline').value);
+            const pax = parseInt(document.getElementById('input-pax').value);
+
+            if (basePrice > 0) {
+                const total = basePrice * airlineMultiplier * pax;
+                document.getElementById('display-price').innerText = "Rp " + total.toLocaleString('id-ID');
+            } else {
+                document.getElementById('display-price').innerText = "Rp 0";
+            }
+        }
+    </script>
+</body>
+</html>
