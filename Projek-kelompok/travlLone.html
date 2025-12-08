@@ -177,7 +177,9 @@
         section {
             display: none;
             min-height: 80vh;
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.8s 
+            cubic-bezier(0.64, 0.06, 0.03, 1.02);
+
         }
 
         section.active-page {
@@ -445,7 +447,7 @@
             margin-top: 3rem;
         }
 
-        /* RESPONSIVE UPGRADE */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -474,15 +476,15 @@
                 column-count: 2;
             }
 
-            /* Zigzag Responsive: Stack vertikal di HP */
+            /* Zigzag Responsive: Stack vertikal*/
             .zigzag-wrapper::before {
-                left: 20px; /* Garis pindah ke kiri */
+                left: 20px; 
             }
             
             .zigzag-item, .zigzag-item.reverse {
                 flex-direction: column;
                 align-items: flex-start;
-                margin-left: 50px; /* Beri ruang untuk garis */
+                margin-left: 50px; 
                 margin-bottom: 50px;
             }
 
@@ -496,7 +498,7 @@
             }
 
             .zigzag-dot {
-                left: 20px; /* Titik pindah ke garis kiri */
+                left: 20px; 
                 display: none;
             }
         }
@@ -678,7 +680,7 @@
                 <div class="zigzag-item">
                     <div class="zigzag-dot"></div>
                     <div class="zigzag-image">
-                        <img src="source/travelone-logo-3.jpg" alt="Tentang Kami" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800'">
+                        <img src="source/travelone-logo-3.png" alt="Tentang Kami" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800'">
                     </div>
                     <div class="zigzag-content">
                         <h3>Who Are We?</h3>
