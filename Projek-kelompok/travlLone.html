@@ -176,7 +176,6 @@
         /* --- 4. SECTIONS & LAYOUT --- */
         section {
             display: none;
-            padding: 2rem 5%;
             min-height: 80vh;
             animation: fadeIn 0.5s ease-in;
         }
@@ -515,12 +514,12 @@
     <div id="login-overlay">
         <div class="login-box">
             <i class="fas fa-plane-departure login-icon"></i>
-            <h2>Selamat Datang</h2>
-            <p>Portal Eksklusif Travelone</p>
+            <h2>Welcome</h2>
+            <p>Exclusive Travelone Portal</p>
             <form onsubmit="handleLogin(event)">
-                <input type="text" class="login-input" placeholder="Nama Pengguna" required>
-                <input type="password" class="login-input" placeholder="Kata Sandi" required>
-                <button type="submit" class="btn-primary">MASUK SEKARANG</button>
+                <input type="text" class="login-input" placeholder="Username" required>
+                <input type="password" class="login-input" placeholder="Password" required>
+                <button type="submit" class="btn-primary">LOGIN NOW</button>
             </form>
         </div>
     </div>
@@ -537,13 +536,13 @@
         </div>
 
         <div class="nav-links" id="nav-links">
-            <a onclick="showPage('home')" class="active">Beranda</a>
-            <a onclick="showPage('packages')">Paket</a>
-            <a onclick="showPage('about')">Tentang</a>
-            <a onclick="showPage('gallery')">Galeri</a>
-            <a onclick="showPage('contact')">Kontak</a>
-            <a onclick="showPage('booking')" style="color: var(--accent-blue);">Pesan Sekarang</a>
-            <a onclick="handleLogout()" class="btn-logout">Keluar</a>
+            <a onclick="showPage('home')" class="active">Main</a>
+            <a onclick="showPage('packages')">Packages</a>
+            <a onclick="showPage('about')">About</a>
+            <a onclick="showPage('gallery')">Gallery</a>
+            <a onclick="showPage('contact')">Contact</a>
+            <a onclick="showPage('booking')" style="color: var(--accent-blue);">Book Now</a>
+            <a onclick="handleLogout()" class="btn-logout">Logout</a>
         </div>
     </nav>
 
@@ -554,16 +553,16 @@
                 <source src="https://www.pexels.com/download/video/2252797/" type="video/mp4">
             </video>
             <div style="z-index: 2;">
-                <h1>Jelajahi Dunia Bersama Kami</h1>
-                <p>Harga terjangkau, pengalaman tak terlupakan, dan layanan profesional.</p>
-                <button onclick="showPage('packages')" class="btn-primary" style="background: var(--accent-blue); width: auto; padding: 15px 40px;">Lihat Destinasi</button>
+                <h1>TraveLone</h1>
+                <p>Travel Around The World Endless Experiences Await</p>
+                <button onclick="showPage('packages')" class="btn-primary" style="background: var(--accent-blue); width: auto; padding: 15px 40px;">Look Your Destination</button>
             </div>
         </div>
 
         <div style="margin-top: 3rem; padding: 0 5%;">
-            <h2 class="section-title">Mengapa Travelone?</h2>
+            <h2 class="section-title">TraveLone Experiences</h2>
             
-            <!-- ZIGZAG LAYOUT UNTUK "MENGAPA KAMI" -->
+            <!-- ZIGZAG LAYOUT "WHY CHOOSE US" -->
             <div class="zigzag-wrapper">
                 
                 <!-- Item 1: Image Left, Text Right -->
@@ -573,8 +572,8 @@
                         <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500" alt="Harga Terjangkau">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Harga Terjangkau</h3>
-                        <p>Kami memahami bahwa anggaran adalah hal penting. Travelone menawarkan paket wisata berkualitas premium dengan harga yang sangat kompetitif dan transparan tanpa biaya tersembunyi.</p>
+                        <h3>Affordable</h3>
+                        <p>We understand that you guys broke. Travelone offers premium-quality tour packages at highly competitive and transparent prices with no hidden fees.</p>
                     </div>
                 </div>
 
@@ -585,8 +584,8 @@
                         <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500" alt="Pelayanan Profesional">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Pelayanan Profesional</h3>
-                        <p>Didukung oleh tim yang berpengalaman lebih dari 10 tahun di industri pariwisata. Guide kami berlisensi resmi dan siap melayani kebutuhan Anda 24/7 dengan ramah dan sigap.</p>
+                        <h3>Profesional</h3>
+                        <p>Supported by a team with no experience in the tourism industry, our guides are officially licensed and ready to serve your needs 24/7 with friendly and responsive service.</p>
                     </div>
                 </div>
 
@@ -597,8 +596,8 @@
                         <img src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=500" alt="Destinasi Beragam">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Destinasi Eksotis</h3>
-                        <p>Dari pantai tersembunyi di Bali hingga puncak gunung Bromo. Kami memiliki akses eksklusif ke berbagai destinasi impian yang mungkin belum pernah Anda bayangkan sebelumnya.</p>
+                        <h3>Exotic Destinations</h3>
+                        <p>From hidden beaches in Bali to the peaks of Mount Bromo. We have exclusive access to a variety of dream destinations you may have never imagined before.</p>
                     </div>
                 </div>
 
@@ -609,8 +608,8 @@
                         <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=500" alt="Paket Lengkap">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Paket All-In-One</h3>
-                        <p>Duduk manis dan nikmati liburan. Tiket pesawat, hotel berbintang, transportasi, hingga tiket masuk wisata sudah kami urus. Liburan bebas ribet dimulai dari sini.</p>
+                        <h3>All-In-One Packages</h3>
+                        <p>Sit back and enjoy your vacation. Airplane tickets, star-rated hotels, transportation, and entrance tickets to tourist attractions are all taken care of. Hassle-free holidays start here.</p>
                     </div>
                 </div>
 
@@ -620,26 +619,26 @@
 
     <!-- 4. HALAMAN: PAKET -->
     <section id="packages">
-        <h2 class="section-title">Paket Wisata Terpopuler</h2>
+        <h2 class="section-title">Popular Travel Packages</h2>
         <div class="grid-container" id="package-list">
-            <!-- Diisi otomatis oleh Javascript -->
+            <!-- Diisi dari Javascript -->
         </div>
     </section>
 
     <!-- 5. HALAMAN: BOOKING -->
     <section id="booking">
-        <h2 class="section-title">Formulir Pemesanan</h2>
+        <h2 class="section-title">Booking Form</h2>
         <div class="booking-container">
-            <form onsubmit="alert('Pemesanan Terkirim! Kami akan menghubungi Anda.'); return false;">
+            <form onsubmit="alert('Booking Sent! We will contact you.'); return false;">
                 <div class="form-group">
-                    <label>Pilih Paket Wisata</label>
+                    <label>Select Travel Package</label>
                     <select id="input-paket" onchange="calculatePrice()" required>
-                        <option value="0">-- Pilih Destinasi --</option>
+                        <option value="0">-- Select Destination --</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label>Maskapai Penerbangan</label>
+                    <label>Airline</label>
                     <select id="input-airline" onchange="calculatePrice()">
                         <option value="1.0">Lion Air (Standard)</option>
                         <option value="1.1">Citilink (Medium)</option>
@@ -649,22 +648,22 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Jumlah Peserta (Pax)</label>
+                    <label>Number of Participants (Pax)</label>
                     <input type="number" id="input-pax" value="1" min="1" oninput="calculatePrice()" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Tanggal Keberangkatan</label>
+                    <label>Departure Date</label>
                     <input type="date" required>
                 </div>
 
                 <div class="price-display">
-                    <h3>Estimasi Total Biaya:</h3>
+                    <h3>Estimated Total Cost:</h3>
                     <div class="total-price" id="display-price">Rp 0</div>
-                    <small>*Harga sudah termasuk pajak & guide</small>
+                    <small>*Price includes taxes & guide</small>
                 </div>
 
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Konfirmasi Pemesanan</button>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Confirm Booking</button>
             </form>
         </div>
     </section>
@@ -672,7 +671,7 @@
     <!-- 6. HALAMAN: ABOUT (ZIGZAG STYLE APPLIED) -->
     <section id="about">
         <div style="padding: 0 5%;">
-            <h2 class="section-title">Tentang Travelone</h2>
+            <h2 class="section-title">About Travelone</h2>
             
             <div class="zigzag-wrapper">
                 <!-- Intro -->
@@ -682,8 +681,8 @@
                         <img src="source/travelone-logo-3.jpg" alt="Tentang Kami" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800'">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Siapa Kami?</h3>
-                        <p>Travelone didirikan pada tahun 2025 dengan satu tujuan: memberikan pengalaman perjalanan tak terlupakan. Kami bukan sekadar agen travel, kami adalah kurator memori indah Anda.</p>
+                        <h3>Who Are We?</h3>
+                        <p>Travelone was founded in 2025 with one goal: to provide unforgettable travel experiences. We are not just a travel agency, we are curators of your beautiful memories.</p>
                     </div>
                 </div>
 
@@ -694,8 +693,8 @@
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500" alt="Visi Kami">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Visi Kami</h3>
-                        <p>Menjadi perusahaan travel terpercaya dan terdepan di Asia Tenggara. Kami bermimpi menghubungkan setiap orang dengan keindahan alam Indonesia dan dunia dengan cara yang mudah dan menyenangkan.</p>
+                        <h3>Our Vision</h3>
+                        <p>To become the most trusted and leading travel company in Southeast Asia. We dream of connecting everyone with the natural beauty of Indonesia and the world in an easy and enjoyable way.</p>
                     </div>
                 </div>
 
@@ -706,8 +705,8 @@
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500" alt="Misi Kami">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Misi Kami</h3>
-                        <p>Kami berkomitmen untuk memberikan pelayanan bintang lima dengan harga kaki lima. Inovasi teknologi, keamanan, dan kepuasan pelanggan adalah pilar utama operasional kami.</p>
+                        <h3>Our Mission</h3>
+                        <p>We are committed to providing five-star service at affordable prices. Technological innovation, safety, and customer satisfaction are the main pillars of our operations.</p>
                     </div>
                 </div>
             </div>
@@ -716,7 +715,7 @@
 
     <!-- 7. HALAMAN: GALLERY -->
     <section id="gallery">
-        <h2 class="section-title">Galeri Perjalanan</h2>
+        <h2 class="section-title">Travel Gallery</h2>
         <div class="masonry-gallery">
             <div class="masonry-item">
                 <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800" alt="Bali">
@@ -753,13 +752,13 @@
     <section id="contact">
         <div class="booking-container" style="text-align: center;">
             <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--primary-blue);"></i>
-            <h2 style="margin: 20px 0;">Hubungi Kami</h2>
-            <p><strong>Kantor Pusat:</strong> Jl. Sudirman No. 123, Jakarta Pusat</p>
-            <p><strong>WhatsApp:</strong> +62 812 3456 7890</p>
+            <h2 style="margin: 20px 0;">Contact Us</h2>
+            <p><strong>Head Office:</strong> Jl. Sudirman No. 123, Jakarta Pusat</p>
+            <p><strong>WhatsApp:</strong> +62 851 7241 1240</p>
             <p><strong>Email:</strong> info@travelone.com</p>
             
             <div style="margin-top: 30px;">
-                <button class="btn-primary" onclick="window.open('https://wa.me/6281234567890', '_blank')"><i class="fab fa-whatsapp"></i> Chat WhatsApp (Live)</button>
+                <button class="btn-primary" onclick="window.open('https://wa.me/6285172411240', '_blank')"><i class="fab fa-whatsapp"></i> Chat WhatsApp (Live)</button>
             </div>
         </div>
     </section>
@@ -771,12 +770,12 @@
     <!-- JAVASCRIPT LOGIC -->
     <script>
         const packages = [
-            { id: 1, name: 'Bali Paradise', price: 3500000, img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800', desc: '4 Hari 3 Malam - Hotel & Transport' },
-            { id: 2, name: 'Jogja Heritage', price: 2200000, img: 'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&q=80&w=800', desc: '3 Hari 2 Malam - Tiket Wisata' },
-            { id: 3, name: 'Lombok Eksotis', price: 4800000, img: 'https://images.unsplash.com/photo-1600790314350-3925299bab61?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '5 Hari 4 Malam - Snorkeling' },
-            { id: 4, name: 'Bandung Cool', price: 1500000, img: 'https://images.unsplash.com/photo-1611638281871-1063d3e76e1f?q=80&w=1133&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '2 Hari 1 Malam - Kuliner' },
-            { id: 5, name: 'Raja Ampat', price: 8500000, img: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '6 Hari 5 Malam - Diving' },
-            { id: 6, name: 'Bromo Sunrise', price: 1800000, img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&q=80&w=800', desc: '2 Hari 1 Malam - Jeep' },
+            { id: 1, name: 'Bali Paradise', price: 3500000, img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800', desc: '4 Days 3 Nights - Hotel & Transport' },
+            { id: 2, name: 'Jogja Heritage', price: 2200000, img: 'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&q=80&w=800', desc: '3 Days 2 Nights - Tour Ticket' },
+            { id: 3, name: 'Lombok Eksotis', price: 4800000, img: 'https://images.unsplash.com/photo-1600790314350-3925299bab61?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '5 Days 4 Nights - Snorkeling' },
+            { id: 4, name: 'Bandung Kemren', price: 1500000, img: 'https://images.unsplash.com/photo-1611638281871-1063d3e76e1f?q=80&w=1133&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '2 Days 1 Night - Culinary' },
+            { id: 5, name: 'Raja Ampat', price: 8500000, img: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '6 Days 5 Nights - Diving' },
+            { id: 6, name: 'Bromo Sunrise', price: 1800000, img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&q=80&w=800', desc: '2 Days 1 Night - Jeep' },
         ];
 
         window.onload = function() {
@@ -791,7 +790,7 @@
                             <h3>${pkg.name}</h3>
                             <p>${pkg.desc}</p>
                             <div class="card-price">Rp ${pkg.price.toLocaleString('id-ID')}</div>
-                            <button onclick="goToBooking(${pkg.id})" class="btn-primary" style="margin-top:10px; width:100%;">Pesan</button>
+                            <button onclick="goToBooking(${pkg.id})" class="btn-primary" style="margin-top:10px; width:100%;">Book Now</button>
                         </div>
                     </div>
                 `;
