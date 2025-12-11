@@ -93,16 +93,19 @@
         #login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
+            /* Background styles tetap sama... */
             background: linear-gradient(135deg, rgba(15, 52, 96, 0.95), rgba(0, 168, 204, 0.6)), 
                         url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600');
             background-size: cover;
             background-position: center;
-            display: flex;
+            
+            /* GANTI INI: Defaultnya sembunyi */
+            display: none; 
+            
             justify-content: center;
             align-items: center;
             z-index: 9999;
         }
-
         .login-box {
             background: white;
             padding: 3.5rem;
@@ -525,13 +528,34 @@
         </div>
     </div>
 
-    <!-- 2. NAVIGATION BAR -->
-    <nav id="main-nav" style="display:none;">
-        <div class="logo">
-            <img src="source/travelone-logo-2.png" alt="Travelone Logo" onerror="this.src='https://via.placeholder.com/50x50?text=Logo'">
+    <!-- booking modal -->
+    <div id="booking-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:10px; max-width:500px; width:90%; text-align:center;">
+            <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--accent-blue); margin-bottom:20px;"></i>
+            <h3 style="color: var(--primary-blue); margin-bottom:15px;">Confirm Your Trip?</h3>
+            
+            <div style="text-align:left; background:#f9f9f9; padding:15px; border-radius:5px; margin-bottom:20px; font-size:0.95rem;">
+                <p><strong>Package:</strong> <span id="summary-pkg">-</span></p>
+                <p><strong>Date:</strong> <span id="summary-date">-</span></p>
+                <p><strong>Participants:</strong> <span id="summary-pax">-</span> people</p>
+                <p><strong>Airline:</strong> <span id="summary-airline">-</span></p>
+                <hr style="margin:10px 0; border:0; border-top:1px dashed #ccc;">
+                <p style="font-size:1.2rem; text-align:right; font-weight:bold; color:var(--primary-blue);">Total: <span id="summary-total">Rp 0</span></p>
+            </div>
+
+            <div style="display:flex; gap:10px; justify-content:center;">
+                <button onclick="closeBookingModal()" style="background:#ccc; color:#333; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Cancel</button>
+                <button onclick="finalSubmit()" class="btn-primary" style="margin-top:0; width:auto;">Yes, I'm Ready!</button>
+            </div>
         </div>
+    </div>
+
+    <!-- 2. NAVIGATION BAR -->
+    <nav id="main-nav">
+        <div class="logo">
+            <img src="source/travelone-logo-2.png" alt="Travelone" onerror="this.src='https://via.placeholder.com/50x50?text=Logo'">
+            <span>Travelone</span> </div>
         
-        <!-- Hamburger Icon -->
         <div class="hamburger" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </div>
@@ -542,8 +566,10 @@
             <a onclick="showPage('about')">About</a>
             <a onclick="showPage('gallery')">Gallery</a>
             <a onclick="showPage('contact')">Contact</a>
-            <a onclick="showPage('booking')" style="color: var(--accent-blue);">Book Now</a>
-            <a onclick="handleLogout()" class="btn-logout">Logout</a>
+            
+            <a onclick="showLoginModal()" id="btn-login-nav">Login</a>
+            
+            <a onclick="handleLogout()" class="btn-logout" id="btn-logout-nav" style="display:none;">Logout</a>
         </div>
     </nav>
 
@@ -566,51 +592,47 @@
             <!-- ZIGZAG LAYOUT "WHY CHOOSE US" -->
             <div class="zigzag-wrapper">
                 
-                <!-- Item 1: Image Left, Text Right -->
                 <div class="zigzag-item">
                     <div class="zigzag-dot"></div>
                     <div class="zigzag-image">
                         <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500" alt="Harga Terjangkau">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Affordable</h3>
-                        <p>We understand that you guys broke. Travelone offers premium-quality tour packages at highly competitive and transparent prices with no hidden fees.</p>
+                        <h3>Best Value for Money</h3>
+                        <p>Experience world-class destinations without breaking the bank. We curate exclusive deals tailored for students and smart travelers who prioritize adventure over luxury costs.</p>
                     </div>
                 </div>
 
-                <!-- Item 2: Text Left, Image Right (Reverse) -->
                 <div class="zigzag-item reverse">
                     <div class="zigzag-dot"></div>
                     <div class="zigzag-image">
                         <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500" alt="Pelayanan Profesional">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Profesional</h3>
-                        <p>Supported by a team with no experience in the tourism industry, our guides are officially licensed and ready to serve your needs 24/7 with friendly and responsive service.</p>
+                        <h3>Certified Local Guides</h3>
+                        <p>Safety is our priority. Every trip is led by licensed local experts who know the hidden gems and culture inside out. We don't just guide; we connect you with the soul of the place.</p>
                     </div>
                 </div>
 
-                <!-- Item 3: Image Left, Text Right -->
                 <div class="zigzag-item">
                     <div class="zigzag-dot"></div>
                     <div class="zigzag-image">
                         <img src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=500" alt="Destinasi Beragam">
                     </div>
                     <div class="zigzag-content">
-                        <h3>Exotic Destinations</h3>
-                        <p>From hidden beaches in Bali to the peaks of Mount Bromo. We have exclusive access to a variety of dream destinations you may have never imagined before.</p>
+                        <h3>Hidden Gems Access</h3>
+                        <p>Go beyond the tourist traps. From the secret beaches of Bali to the untouched peaks of Bromo, we take you to places that standard travel agencies don't even know exist.</p>
                     </div>
                 </div>
 
-                <!-- Item 4: Text Left, Image Right (Reverse) -->
                 <div class="zigzag-item reverse">
                     <div class="zigzag-dot"></div>
                     <div class="zigzag-image">
                         <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=500" alt="Paket Lengkap">
                     </div>
                     <div class="zigzag-content">
-                        <h3>All-In-One Packages</h3>
-                        <p>Sit back and enjoy your vacation. Airplane tickets, star-rated hotels, transportation, and entrance tickets to tourist attractions are all taken care of. Hassle-free holidays start here.</p>
+                        <h3>Hassle-Free Journey</h3>
+                        <p>Stop worrying about logistics. Flights, accommodation, and transport are all handled by us. Your only job is to pack your bags and enjoy the endless experiences awaiting you.</p>
                     </div>
                 </div>
 
@@ -630,14 +652,14 @@
     <section id="booking">
         <h2 class="section-title">Booking Form</h2>
         <div class="booking-container">
-            <form onsubmit="alert('Booking Sent! We will contact you.'); return false;">
+            <form onsubmit="openBookingConfirmation(event)">
+                
                 <div class="form-group">
                     <label>Select Travel Package</label>
                     <select id="input-paket" onchange="calculatePrice()" required>
                         <option value="0">-- Select Destination --</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label>Airline</label>
                     <select id="input-airline" onchange="calculatePrice()">
@@ -655,7 +677,7 @@
 
                 <div class="form-group">
                     <label>Departure Date</label>
-                    <input type="date" required>
+                    <input type="date" id="input-date" required>
                 </div>
 
                 <div class="price-display">
@@ -668,7 +690,6 @@
             </form>
         </div>
     </section>
-
     <!-- 6. HALAMAN: ABOUT (ZIGZAG STYLE APPLIED) -->
     <section id="about">
         <div style="padding: 0 5%;">
@@ -770,19 +791,24 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // Data Paket
         const packages = [
             { id: 1, name: 'Bali Paradise', price: 3500000, img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800', desc: '4 Days 3 Nights - Hotel & Transport' },
             { id: 2, name: 'Jogja Heritage', price: 2200000, img: 'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&q=80&w=800', desc: '3 Days 2 Nights - Tour Ticket' },
             { id: 3, name: 'Lombok Eksotis', price: 4800000, img: 'https://images.unsplash.com/photo-1600790314350-3925299bab61?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '5 Days 4 Nights - Snorkeling' },
-            { id: 4, name: 'Bandung Kemren', price: 1500000, img: 'https://images.unsplash.com/photo-1611638281871-1063d3e76e1f?q=80&w=1133&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '2 Days 1 Night - Culinary' },
+            { id: 4, name: 'Bandung Keren', price: 1500000, img: 'https://images.unsplash.com/photo-1611638281871-1063d3e76e1f?q=80&w=1133&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '2 Days 1 Night - Culinary' },
             { id: 5, name: 'Raja Ampat', price: 8500000, img: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', desc: '6 Days 5 Nights - Diving' },
             { id: 6, name: 'Bromo Sunrise', price: 1800000, img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&q=80&w=800', desc: '2 Days 1 Night - Jeep' },
         ];
 
+        let pendingBookingId = null; 
+
         window.onload = function() {
+            // 1. Setup Form dan Paket
             const packageContainer = document.getElementById('package-list');
             const selectOptions = document.getElementById('input-paket');
             
+            // Render Paket ke dalam Grid
             packages.forEach(pkg => {
                 packageContainer.innerHTML += `
                     <div class="card">
@@ -795,56 +821,118 @@
                         </div>
                     </div>
                 `;
-                selectOptions.innerHTML += `<option value="${pkg.price}">${pkg.name}</option>`;
+                // Isi dropdown booking
+                if(selectOptions) {
+                    selectOptions.innerHTML += `<option value="${pkg.price}" id="opt-pkg-${pkg.id}">${pkg.name}</option>`;
+                }
             });
 
-            if(localStorage.getItem('isLoggedIn') === 'true') {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('main-nav').style.display = 'flex';
-                showPage('home');
+            // 2. Setup Validasi Tanggal (Min Hari Ini)
+            const dateInput = document.getElementById('input-date');
+            if(dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
             }
+
+            // 3. Tampilkan Halaman Home
+            showPage('home');
+            
+            // 4. Update UI Navbar
+            updateNavUI();
         };
+
+        // --- NAV UI CHECKER ---
+        function updateNavUI() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const btnLogin = document.getElementById('btn-login-nav');
+            const btnLogout = document.getElementById('btn-logout-nav');
+
+            if (isLoggedIn) {
+                btnLogin.style.display = 'none';
+                btnLogout.style.display = 'block';
+            } else {
+                btnLogin.style.display = 'block';
+                btnLogout.style.display = 'none';
+            }
+        }
+
+        // --- BOOKING LOGIC ---
+        function goToBooking(pkgId) {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (!isLoggedIn) {
+                pendingBookingId = pkgId;
+                showLoginModal();
+            } else {
+                processBooking(pkgId);
+            }
+        }
+
+        function processBooking(pkgId) {
+            showPage('booking');
+            
+            const select = document.getElementById('input-paket');
+            const option = document.getElementById(`opt-pkg-${pkgId}`);
+            if(option && select) {
+                select.value = option.value; 
+                calculatePrice();
+            }
+        }
+
+        // --- MODAL LOGIN ---
+        function showLoginModal() {
+            document.getElementById('login-overlay').style.display = 'flex';
+        }
 
         function handleLogin(e) {
             e.preventDefault();
-            document.getElementById('login-overlay').style.display = 'none';
-            document.getElementById('main-nav').style.display = 'flex';
-            showPage('home');
             localStorage.setItem('isLoggedIn', 'true');
+            document.getElementById('login-overlay').style.display = 'none';
+            updateNavUI();
+
+            if (pendingBookingId !== null) {
+                processBooking(pendingBookingId);
+                pendingBookingId = null; 
+            }
         }
 
         function handleLogout() {
-            document.getElementById('login-overlay').style.display = 'flex';
-            document.getElementById('main-nav').style.display = 'none';
             localStorage.removeItem('isLoggedIn');
-            location.reload();
+            updateNavUI();
+            showPage('home');
+            alert("You have logged out.");
         }
 
+        // --- UTILITY ---
         function toggleMenu() {
-            const nav = document.getElementById('nav-links');
-            nav.classList.toggle('active');
+            document.getElementById('nav-links').classList.toggle('active');
         }
 
         function showPage(pageId) {
+            if (pageId === 'booking' && localStorage.getItem('isLoggedIn') !== 'true') {
+                showLoginModal();
+                return;
+            }
+
             document.querySelectorAll('section').forEach(sec => sec.classList.remove('active-page'));
-            document.getElementById(pageId).classList.add('active-page');
+            const target = document.getElementById(pageId);
+            if(target) target.classList.add('active-page');
+            
             document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-            
-            // Tutup menu mobile setelah klik (UX yang bagus)
             document.getElementById('nav-links').classList.remove('active');
-            
             window.scrollTo(0,0);
         }
 
-        function goToBooking(pkgId) {
-            showPage('booking');
-            alert("Silakan pilih paket yang Anda inginkan di formulir.");
-        }
-
         function calculatePrice() {
-            const basePrice = parseFloat(document.getElementById('input-paket').value);
-            const airlineMultiplier = parseFloat(document.getElementById('input-airline').value);
-            const pax = parseInt(document.getElementById('input-pax').value);
+            const paketEl = document.getElementById('input-paket');
+            const airlineEl = document.getElementById('input-airline');
+            const paxEl = document.getElementById('input-pax');
+
+            if(!paketEl || !airlineEl || !paxEl) return;
+
+            const basePrice = parseFloat(paketEl.value);
+            const airlineMultiplier = parseFloat(airlineEl.value);
+            const pax = parseInt(paxEl.value);
 
             if (basePrice > 0) {
                 const total = basePrice * airlineMultiplier * pax;
@@ -852,6 +940,43 @@
             } else {
                 document.getElementById('display-price').innerText = "Rp 0";
             }
+        }
+
+        // --- MODAL KONFIRMASI (NEW) ---
+        function openBookingConfirmation(e) {
+            e.preventDefault(); 
+
+            const pkgSelect = document.getElementById('input-paket');
+            const airlineSelect = document.getElementById('input-airline');
+            const pax = document.getElementById('input-pax').value;
+            const date = document.getElementById('input-date').value;
+            const total = document.getElementById('display-price').innerText;
+
+            if(pkgSelect.value == "0") {
+                alert("Please select a destination first!");
+                return;
+            }
+
+            const pkgName = pkgSelect.options[pkgSelect.selectedIndex].text;
+            const airlineName = airlineSelect.options[airlineSelect.selectedIndex].text;
+
+            document.getElementById('summary-pkg').innerText = pkgName;
+            document.getElementById('summary-date').innerText = date;
+            document.getElementById('summary-pax').innerText = pax;
+            document.getElementById('summary-airline').innerText = airlineName;
+            document.getElementById('summary-total').innerText = total;
+
+            document.getElementById('booking-modal').style.display = 'flex';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').style.display = 'none';
+        }
+
+        function finalSubmit() {
+            closeBookingModal();
+            alert(`Thank you! \n\nWe have received your booking for Rp ${document.getElementById('display-price').innerText}.\nOur team will contact you shortly via WhatsApp.`);
+            showPage('home');
         }
     </script>
 </body>
